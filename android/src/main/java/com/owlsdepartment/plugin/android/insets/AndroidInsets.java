@@ -22,4 +22,18 @@ public class AndroidInsets {
 
         return titleBarHeight / metrics.density;
     }
+
+    public DisplayCutout getCutout() {
+        WindowInsets windowInsets =  activity.getWindow().getDecorView().getRootWindowInsets();
+        if(windowInsets == null) {
+            return null;
+        }
+
+        DisplayCutout displayCutout = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            displayCutout = windowInsets.getDisplayCutout();
+        }
+
+        return displayCutout;
+    }
 }
