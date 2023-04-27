@@ -34,8 +34,11 @@ public class AndroidInsetsPlugin extends Plugin {
         DisplayCutout displayCutout = implementation.getCutout();
         float density = this.getBridge().getActivity().getResources().getDisplayMetrics().density;
 
+        float statusBarHeight = implementation.getTop();
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-            ret.put("top", Math.round(displayCutout.getSafeInsetTop() / density));
+            ret.put("top", statusBarHeight);
+            ret.put("top_inset", Math.round(displayCutout.getSafeInsetTop() / density));
             ret.put("bottom", Math.round(displayCutout.getSafeInsetBottom() / density));
             ret.put("left", Math.round(displayCutout.getSafeInsetLeft() / density));
             ret.put("right", Math.round(displayCutout.getSafeInsetRight() / density));
