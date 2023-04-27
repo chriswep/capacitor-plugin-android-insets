@@ -32,6 +32,7 @@ const { value } = await AndroidInsets.top();
 <docgen-index>
 
 * [`top()`](#top)
+* [`getInsets()`](#getinsets)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -52,6 +53,17 @@ Returns top offset of the status bar
 --------------------
 
 
+### getInsets()
+
+```typescript
+getInsets() => Promise<GetInsetsReturn>
+```
+
+**Returns:** <code>Promise&lt;<a href="#getinsetsreturn">GetInsetsReturn</a>&gt;</code>
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -60,5 +72,15 @@ Returns top offset of the status bar
 | Prop        | Type                |
 | ----------- | ------------------- |
 | **`value`** | <code>number</code> |
+
+
+#### GetInsetsReturn
+
+| Prop         | Type                |
+| ------------ | ------------------- |
+| **`top`**    | <code>number</code> |
+| **`right`**  | <code>number</code> |
+| **`bottom`** | <code>number</code> |
+| **`left`**   | <code>number</code> |
 
 </docgen-api>

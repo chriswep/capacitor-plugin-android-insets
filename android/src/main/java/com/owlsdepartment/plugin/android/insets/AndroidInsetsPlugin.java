@@ -1,6 +1,7 @@
 package com.owlsdepartment.plugin.android.insets;
 
 import android.app.Activity;
+import android.view.DisplayCutout;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;

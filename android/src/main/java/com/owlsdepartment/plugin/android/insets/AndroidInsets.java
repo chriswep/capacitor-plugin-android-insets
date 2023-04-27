@@ -1,6 +1,9 @@
 package com.owlsdepartment.plugin.android.insets;
 
 import android.util.DisplayMetrics;
+import android.view.DisplayCutout;
+import android.view.WindowInsets;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AndroidInsets {

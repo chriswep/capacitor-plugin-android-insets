@@ -1,0 +1,93 @@
+{
+  "api": {
+    "name": "AndroidInsetsPlugin",
+    "slug": "androidinsetsplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "top",
+        "signature": "() => Promise<TopReturn>",
+        "parameters": [],
+        "returns": "Promise<TopReturn>",
+        "tags": [],
+        "docs": "Returns top offset of the status bar",
+        "complexTypes": [
+          "TopReturn"
+        ],
+        "slug": "top"
+      },
+      {
+        "name": "getInsets",
+        "signature": "() => Promise<GetInsetsReturn>",
+        "parameters": [],
+        "returns": "Promise<GetInsetsReturn>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "GetInsetsReturn"
+        ],
+        "slug": "getinsets"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "TopReturn",
+      "slug": "topreturn",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "value",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "GetInsetsReturn",
+      "slug": "getinsetsreturn",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "top",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "right",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "bottom",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "left",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
