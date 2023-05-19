@@ -1,4 +1,4 @@
-# capacitor-plugin-android-insets
+# @emmaus/capacitor-plugin-android-insets
 
 Capacitor plugin for retrieving proper top offset of Android status bar.
 
@@ -8,21 +8,21 @@ This repo is published version with changed name of https://github.com/jorisbert
 
 ```bash
 # with npm
-npm install --save capacitor-plugin-android-insets
+npm install --save @emmaus/capacitor-plugin-android-insets
 # with yarn
-yarn add capacitor-plugin-android-insets
+yarn add @emmaus/capacitor-plugin-android-insets
 # after any install
 npx cap sync
 ```
 
 ## Why?
 
-This plugin is required only on Android when using `StatusBar.setOverlaysWebView({ overlay: true })`. There is a problem with top offset counting, when status bar is transparent. Related issue: https://github.com/ionic-team/capacitor/issues/2840. 
+This plugin is required only on Android when using `StatusBar.setOverlaysWebView({ overlay: true })`. There is a problem with top offset counting, when status bar is transparent. Related issue: https://github.com/ionic-team/capacitor/issues/2840.
 
 ## Usage
 
 ```ts
-import { AndroidInsets } from 'capacitor-plugin-android-insets'
+import { AndroidInsets } from '@emmaus/capacitor-plugin-android-insets';
 
 const { value } = await AndroidInsets.top();
 ```

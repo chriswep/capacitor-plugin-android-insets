@@ -1,4 +1,4 @@
-package com.owlsdepartment.plugin.android.insets;
+package systems.emmaus.plugin.android.insets;
 
 import android.app.Activity;
 import android.view.DisplayCutout;
@@ -36,12 +36,18 @@ public class AndroidInsetsPlugin extends Plugin {
 
         float statusBarHeight = implementation.getTop();
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-            ret.put("top", statusBarHeight);
+        ret.put("top", statusBarHeight);
+
+        if (displayCutout != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
             ret.put("top_inset", Math.round(displayCutout.getSafeInsetTop() / density));
             ret.put("bottom", Math.round(displayCutout.getSafeInsetBottom() / density));
             ret.put("left", Math.round(displayCutout.getSafeInsetLeft() / density));
             ret.put("right", Math.round(displayCutout.getSafeInsetRight() / density));
+        } else {
+            ret.put("top_inset", 0);
+            ret.put("bottom", 0);
+            ret.put("left", 0);
+            ret.put("right", 0);
         }
 
         call.resolve(ret);

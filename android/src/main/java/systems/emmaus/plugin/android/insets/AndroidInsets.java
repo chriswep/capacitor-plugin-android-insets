@@ -1,9 +1,8 @@
-package com.owlsdepartment.plugin.android.insets;
+package systems.emmaus.plugin.android.insets;
 
 import android.util.DisplayMetrics;
 import android.view.DisplayCutout;
 import android.view.WindowInsets;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AndroidInsets {
@@ -27,8 +26,8 @@ public class AndroidInsets {
     }
 
     public DisplayCutout getCutout() {
-        WindowInsets windowInsets =  activity.getWindow().getDecorView().getRootWindowInsets();
-        if(windowInsets == null) {
+        WindowInsets windowInsets = activity.getWindow().getDecorView().getRootWindowInsets();
+        if (windowInsets == null) {
             return null;
         }
 
