@@ -31,8 +31,8 @@ const { value } = await AndroidInsets.top();
 
 <docgen-index>
 
-* [`top()`](#top)
-* [`getInsets()`](#getinsets)
+* [`getDisplayInfo()`](#getdisplayinfo)
+* [`setNavbarBackgroundColor(...)`](#setnavbarbackgroundcolor)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -40,26 +40,26 @@ const { value } = await AndroidInsets.top();
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### top()
+### getDisplayInfo()
 
 ```typescript
-top() => Promise<TopReturn>
+getDisplayInfo() => Promise<GetDisplayInfoReturn>
 ```
 
-Returns top offset of the status bar
-
-**Returns:** <code>Promise&lt;<a href="#topreturn">TopReturn</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#getdisplayinforeturn">GetDisplayInfoReturn</a>&gt;</code>
 
 --------------------
 
 
-### getInsets()
+### setNavbarBackgroundColor(...)
 
 ```typescript
-getInsets() => Promise<GetInsetsReturn>
+setNavbarBackgroundColor(options: { r: number; g: number; b: number; a: number; }) => Promise<void>
 ```
 
-**Returns:** <code>Promise&lt;<a href="#getinsetsreturn">GetInsetsReturn</a>&gt;</code>
+| Param         | Type                                                         |
+| ------------- | ------------------------------------------------------------ |
+| **`options`** | <code>{ r: number; g: number; b: number; a: number; }</code> |
 
 --------------------
 
@@ -67,20 +67,18 @@ getInsets() => Promise<GetInsetsReturn>
 ### Interfaces
 
 
-#### TopReturn
+#### GetDisplayInfoReturn
 
-| Prop        | Type                |
-| ----------- | ------------------- |
-| **`value`** | <code>number</code> |
-
-
-#### GetInsetsReturn
-
-| Prop         | Type                |
-| ------------ | ------------------- |
-| **`top`**    | <code>number</code> |
-| **`right`**  | <code>number</code> |
-| **`bottom`** | <code>number</code> |
-| **`left`**   | <code>number</code> |
+| Prop                  | Type                                                                          |
+| --------------------- | ----------------------------------------------------------------------------- |
+| **`isGestureMode`**   | <code>boolean</code>                                                          |
+| **`rotation`**        | <code>'portrait' \| 'landscape-left' \| 'landscape-right' \| 'unknown'</code> |
+| **`statusbarHeight`** | <code>number</code>                                                           |
+| **`navbarPosition`**  | <code>'BOTTOM' \| 'RIGHT' \| 'LEFT' \| 'UNKNOWN'</code>                       |
+| **`navbarSize`**      | <code>number</code>                                                           |
+| **`insetTop`**        | <code>number</code>                                                           |
+| **`insetRight`**      | <code>number</code>                                                           |
+| **`insetBottom`**     | <code>number</code>                                                           |
+| **`insetLeft`**       | <code>number</code>                                                           |
 
 </docgen-api>

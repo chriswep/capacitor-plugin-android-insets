@@ -6,79 +6,102 @@
     "tags": [],
     "methods": [
       {
-        "name": "top",
-        "signature": "() => Promise<TopReturn>",
+        "name": "getDisplayInfo",
+        "signature": "() => Promise<GetDisplayInfoReturn>",
         "parameters": [],
-        "returns": "Promise<TopReturn>",
-        "tags": [],
-        "docs": "Returns top offset of the status bar",
-        "complexTypes": [
-          "TopReturn"
-        ],
-        "slug": "top"
-      },
-      {
-        "name": "getInsets",
-        "signature": "() => Promise<GetInsetsReturn>",
-        "parameters": [],
-        "returns": "Promise<GetInsetsReturn>",
+        "returns": "Promise<GetDisplayInfoReturn>",
         "tags": [],
         "docs": "",
         "complexTypes": [
-          "GetInsetsReturn"
+          "GetDisplayInfoReturn"
         ],
-        "slug": "getinsets"
+        "slug": "getdisplayinfo"
+      },
+      {
+        "name": "setNavbarBackgroundColor",
+        "signature": "(options: { r: number; g: number; b: number; a: number; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ r: number; g: number; b: number; a: number; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setnavbarbackgroundcolor"
       }
     ],
     "properties": []
   },
   "interfaces": [
     {
-      "name": "TopReturn",
-      "slug": "topreturn",
+      "name": "GetDisplayInfoReturn",
+      "slug": "getdisplayinforeturn",
       "docs": "",
       "tags": [],
       "methods": [],
       "properties": [
         {
-          "name": "value",
+          "name": "isGestureMode",
           "tags": [],
           "docs": "",
           "complexTypes": [],
-          "type": "number"
-        }
-      ]
-    },
-    {
-      "name": "GetInsetsReturn",
-      "slug": "getinsetsreturn",
-      "docs": "",
-      "tags": [],
-      "methods": [],
-      "properties": [
+          "type": "boolean"
+        },
         {
-          "name": "top",
+          "name": "rotation",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "'portrait' | 'landscape-left' | 'landscape-right' | 'unknown'"
+        },
+        {
+          "name": "statusbarHeight",
           "tags": [],
           "docs": "",
           "complexTypes": [],
           "type": "number"
         },
         {
-          "name": "right",
+          "name": "navbarPosition",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "'BOTTOM' | 'RIGHT' | 'LEFT' | 'UNKNOWN'"
+        },
+        {
+          "name": "navbarSize",
           "tags": [],
           "docs": "",
           "complexTypes": [],
           "type": "number"
         },
         {
-          "name": "bottom",
+          "name": "insetTop",
           "tags": [],
           "docs": "",
           "complexTypes": [],
           "type": "number"
         },
         {
-          "name": "left",
+          "name": "insetRight",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "insetBottom",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "insetLeft",
           "tags": [],
           "docs": "",
           "complexTypes": [],

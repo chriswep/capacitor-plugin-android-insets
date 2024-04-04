@@ -1,16 +1,20 @@
 export interface AndroidInsetsPlugin {
-    /**
-     * Returns top offset of the status bar
-     */
-    top(): Promise<TopReturn>;
-    getInsets(): Promise<GetInsetsReturn>;
+    getDisplayInfo(): Promise<GetDisplayInfoReturn>;
+    setNavbarBackgroundColor(options: {
+        r: number;
+        g: number;
+        b: number;
+        a: number;
+    }): Promise<void>;
 }
-export interface TopReturn {
-    value: number;
-}
-export interface GetInsetsReturn {
-    top: number;
-    right: number;
-    bottom: number;
-    left: number;
+export interface GetDisplayInfoReturn {
+    isGestureMode: boolean;
+    rotation: 'portrait' | 'landscape-left' | 'landscape-right' | 'unknown';
+    statusbarHeight: number;
+    navbarPosition: 'BOTTOM' | 'RIGHT' | 'LEFT' | 'UNKNOWN';
+    navbarSize: number;
+    insetTop: number;
+    insetRight: number;
+    insetBottom: number;
+    insetLeft: number;
 }

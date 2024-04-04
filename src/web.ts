@@ -1,12 +1,23 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { AndroidInsetsPlugin, GetInsetsReturn, TopReturn } from './definitions';
+import type { AndroidInsetsPlugin, GetDisplayInfoReturn } from './definitions';
 
 export class AndroidInsetsWeb extends WebPlugin implements AndroidInsetsPlugin {
-  async top(): Promise<TopReturn> {
-    return { value: 0 };
+  async getDisplayInfo(): Promise<GetDisplayInfoReturn> {
+    return {
+      isGestureMode: false,
+      rotation: 'unknown',
+      statusbarHeight: 0,
+      navbarPosition: 'UNKNOWN',
+      navbarSize: 0,
+      insetTop: 0,
+      insetRight: 0,
+      insetBottom: 0,
+      insetLeft: 0,
+    };
   }
-  async getInsets(): Promise<GetInsetsReturn> {
-    return { top: 0, right: 0, bottom: 0, left: 0 };
+
+  async setNavbarBackgroundColor(_options: { r:number, g:number, b:number, a:number }): Promise<void> {
+    return;
   }
 }

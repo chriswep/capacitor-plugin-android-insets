@@ -9,11 +9,21 @@ const AndroidInsets = core.registerPlugin('AndroidInsets', {
 });
 
 class AndroidInsetsWeb extends core.WebPlugin {
-    async top() {
-        return { value: 0 };
+    async getDisplayInfo() {
+        return {
+            isGestureMode: false,
+            rotation: 'unknown',
+            statusbarHeight: 0,
+            navbarPosition: 'UNKNOWN',
+            navbarSize: 0,
+            insetTop: 0,
+            insetRight: 0,
+            insetBottom: 0,
+            insetLeft: 0,
+        };
     }
-    async getInsets() {
-        return { top: 0, right: 0, bottom: 0, left: 0 };
+    async setNavbarBackgroundColor(_options) {
+        return;
     }
 }
 

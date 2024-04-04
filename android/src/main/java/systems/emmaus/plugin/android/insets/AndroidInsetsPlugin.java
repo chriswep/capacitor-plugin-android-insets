@@ -19,37 +19,38 @@ public class AndroidInsetsPlugin extends Plugin {
     }
 
     @PluginMethod
-    public void top(PluginCall call) {
-        float statusBarHeight = implementation.getTop();
+    public void getDisplayInfo(PluginCall call) {
         JSObject ret = new JSObject();
 
-        ret.put("value", statusBarHeight);
+        String rotation = implementation.getRotation();
+        boolean isGestureMode = implementation.isNavigationBarGestureMode();
+        int[] insets = implementation.getNormalizedSafeInsets();
+        int statusbarHeight = implementation.getStatusbarHeight();
+        AndroidInsets.NavbarInfo navbarInfo = implementation.getNavbarInfo();
+
+        ret.put("rotation", rotation);
+        ret.put("isGestureMode", isGestureMode);
+        ret.put("statusbarHeight", statusbarHeight);
+        ret.put("navbarPosition", navbarInfo.position);
+        ret.put("navbarSize", navbarInfo.size);
+        ret.put("insetTop", insets[0]);
+        ret.put("insetBottom", insets[1]);
+        ret.put("insetLeft", insets[2]);
+        ret.put("insetRight", insets[3]);
+
         call.resolve(ret);
     }
 
     @PluginMethod
-    public void getInsets(PluginCall call) {
+    public void setNavbarBackgroundColor(PluginCall call) {
         JSObject ret = new JSObject();
-
-        DisplayCutout displayCutout = implementation.getCutout();
-        float density = this.getBridge().getActivity().getResources().getDisplayMetrics().density;
-
-        float statusBarHeight = implementation.getTop();
-
-        ret.put("top", statusBarHeight);
-
-        if (displayCutout != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-            ret.put("top_inset", Math.round(displayCutout.getSafeInsetTop() / density));
-            ret.put("bottom", Math.round(displayCutout.getSafeInsetBottom() / density));
-            ret.put("left", Math.round(displayCutout.getSafeInsetLeft() / density));
-            ret.put("right", Math.round(displayCutout.getSafeInsetRight() / density));
-        } else {
-            ret.put("top_inset", 0);
-            ret.put("bottom", 0);
-            ret.put("left", 0);
-            ret.put("right", 0);
-        }
-
+        implementation.setNavbarBackgroundColor(
+            call.getInt("r"),
+            call.getInt("g"),
+            call.getInt("b"),
+            call.getInt("a"),
+            call.getBoolean("isDark")
+        );
         call.resolve(ret);
     }
 }
