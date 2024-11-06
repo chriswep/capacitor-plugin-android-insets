@@ -143,6 +143,7 @@ public class AndroidInsets {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            window.setNavigationBarContrastEnforced(true);
                             WindowInsetsController controller = window.getInsetsController();
                             if (isDark) {
                                 controller.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
