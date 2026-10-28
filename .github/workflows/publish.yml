@@ -1,0 +1,62 @@
+name: Publish npm package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'chriswep/capacitor-plugin-android-insets' && !github.event.release.prerelease
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Verify release version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          node - <<'NODE'
+          const { name, version } = require('./package.json');
+          if (name !== '@emmaus/capacitor-plugin-android-insets' ||
+              !/^8\.\d+\.\d+$/.test(version) ||
+              process.env.RELEASE_TAG !== `v${version}`) {
+            throw new Error('Release tag must match the stable Capacitor 8 package version');
+          }
+          NODE
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - name: Verify native package contents
+        run: |
+          npm pack --dry-run --json > package-contents.json
+          node - <<'NODE'
+          const [{ files }] = require('./package-contents.json');
+          const paths = new Set(files.map(file => file.path));
+          for (const path of [
+            'Package.swift',
+            'EmmausCapacitorPluginAndroidInsets.podspec',
+            'ios/Plugin/AndroidInsetsPlugin.swift',
+            'android/src/main/java/systems/emmaus/plugin/android/insets/AndroidInsetsPlugin.java',
+            'dist/esm/index.d.ts',
+            'dist/plugin.cjs.js',
+          ]) {
+            if (!paths.has(path)) throw new Error(`Missing package file: ${path}`);
+          }
+          NODE
+      # npm obtains a short-lived credential from the configured trusted publisher.
+      - run: npm publish --access public --provenance

@@ -43,10 +43,18 @@ This template is integrated with ESLint, Prettier, and SwiftLint. Using these to
 
 ## Publishing
 
-There is a `prepublishOnly` hook in `package.json` which prepares the plugin before publishing, so all you need to do is run:
+Releases are published from GitHub Actions through npm trusted publishing; no npm token is stored in the repository. The npm package belongs to `emmaus`, while the GitHub repository belongs to `chriswep`.
 
-```shell
-npm publish
-```
+The npm trusted publisher must use owner `chriswep`, repository `capacitor-plugin-android-insets`, workflow `publish.yml`, no environment name, and allow `npm publish`.
+
+Before a release:
+
+1. Update the package and lockfile version together. Major 8 targets Capacitor 8.
+2. Run `npm ci --ignore-scripts`, `npm run build`, the native verification commands, and `npm pack --dry-run`. Verify the packed plugin in the consuming app, including an optimized Android release build and iOS SPM.
+3. Commit and review all source, lockfile and generated `dist/` changes, then merge to `main`.
+4. Create a GitHub release with tag `v` followed by the exact package version (for example, `v8.0.0`) at that reviewed commit.
+5. Publishing the GitHub release triggers `.github/workflows/publish.yml`. It checks the version and package contents, then publishes publicly to npm with provenance. Confirm the workflow succeeds and the exact npm version exists before updating the app.
+
+A draft GitHub release does not publish. A stable version cannot be republished; use a new version for corrections. Local `npm publish` is still possible with an authorized npm login, but is not the normal release path.
 
 > **Note**: The [`files`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) array in `package.json` specifies which files get published. If you rename files/directories or add files elsewhere, you may need to update it.

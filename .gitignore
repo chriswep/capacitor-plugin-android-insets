@@ -2,6 +2,8 @@
 node_modules
 
 # iOS files
+/.build/
+/Package.resolved
 Pods
 Podfile.lock
 Build

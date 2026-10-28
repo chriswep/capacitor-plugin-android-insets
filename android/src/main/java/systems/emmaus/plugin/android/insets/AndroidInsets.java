@@ -76,7 +76,10 @@ public class AndroidInsets {
     }
 
     public int[] getNormalizedSafeInsets() {
-        WindowInsets windowInsets = activity.getWindow().getDecorView().getRootWindowInsets();
+        WindowInsets windowInsets = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            windowInsets = activity.getWindow().getDecorView().getRootWindowInsets();
+        }
         if (windowInsets == null) {
             return new int[]{0, 0, 0, 0};
         }

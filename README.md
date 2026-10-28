@@ -2,7 +2,7 @@
 
 Capacitor plugin for retrieving proper top offset of Android status bar.
 
-This repo is published version with changed name of https://github.com/jorisbertomeu/capacitor-insets-v2, which was based on archived https://github.com/igorcd/capacitor-insets-plugin/. It should work perfectly fine in `Capacitor@4`.
+This repo is published version with changed name of https://github.com/jorisbertomeu/capacitor-insets-v2, which was based on archived https://github.com/igorcd/capacitor-insets-plugin/. Version 8 targets Capacitor 8 (Android API 24+, iOS 15+ for native packaging). Earlier Capacitor versions should keep using the older plugin release. iOS supports CocoaPods and Swift Package Manager; the display-info API is Android-only, so guard these calls with a platform check. The web implementation returns zero insets.
 
 ## Install
 
@@ -22,9 +22,13 @@ This plugin is required only on Android when using `StatusBar.setOverlaysWebView
 ## Usage
 
 ```ts
+import { Capacitor } from '@capacitor/core';
 import { AndroidInsets } from '@emmaus/capacitor-plugin-android-insets';
 
-const { value } = await AndroidInsets.top();
+if (Capacitor.getPlatform() === 'android') {
+  const displayInfo = await AndroidInsets.getDisplayInfo();
+  console.log(displayInfo.insetTop);
+}
 ```
 
 ## API
